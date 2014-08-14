@@ -5,4 +5,5 @@ SortDoubanSearchResult
 我需要按评分来排序搜索结果，可惜豆瓣页面上没找到类似的功能，于是自己写了个脚本，自动抓取搜索结果，
 然后根据评分由高到低排序，并生成一个本地html文件。
 
-#使用时要把douban.py里sort_search_result('毛姆')的参数改为需要搜索的书籍名称
+#使用说明
+使用时要把douban.py里sort_search_result('毛姆')的参数改为需要搜索的书籍名称

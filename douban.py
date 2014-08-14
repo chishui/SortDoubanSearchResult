@@ -45,8 +45,9 @@ def getBooksInfo(search_text, start=None) :
 				score = float(rating.string)
 
 			url = info.findChild('a')['href']
+			pub = info.findChild('div', 'pub').string.encode('utf-8')	
 
-			book = {'score': score, 'name' : title, 'url' : url}
+			book = {'score': score, 'name' : title, 'url' : url, 'pub' : pub}
 			books.append(book)
 
 	return count
@@ -57,7 +58,7 @@ def write_data_to_html(search_text) :
 
 	insertText = []
 	for i, book in enumerate(books):
-		insertText.append('<tr><td>%d</td><td>%.1f</td><td><a href="%s">%s</a></td></tr>' %(i + 1, book['score'], book['url'],  book['name'].decode('utf-8')))
+		insertText.append('<tr><td>%d</td><td>%.1f</td><td><a href="%s">%s</a> <span style="font-size:10pt">%s</span></td></tr>' %(i + 1, book['score'], book['url'],  book['name'].decode('utf-8'), book['pub'].decode('utf-8')))
 
 	with open(outputfile, 'r') as fout :
 		html = fout.read()

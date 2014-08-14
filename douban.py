@@ -4,8 +4,9 @@ import re, shutil, webbrowser,os, requests
 from bs4 import BeautifulSoup
 
 books = []
+
 def compareWithScore(book1, book2) :
-	return int((book2['score'] - book1['score']) * 10)
+	return int(round((book2['score'] - book1['score']) * 10.0))
 
 def getBooksInfo(search_text, start=None) :
 	if start :
@@ -42,7 +43,6 @@ def getBooksInfo(search_text, start=None) :
 			rating = item.findChild('span', 'rating_nums')
 			if rating:
 				score = float(rating.string)
-				print score
 
 			url = info.findChild('a')['href']
 
@@ -52,7 +52,7 @@ def getBooksInfo(search_text, start=None) :
 	return count
 
 def write_data_to_html(search_text) :
-	outputfile = './%s.html' % search_text
+	outputfile = unicode('./%s.html' % search_text, 'utf-8')
 	shutil.copy("./data/template.html", outputfile)
 
 	insertText = []
@@ -84,4 +84,4 @@ def sort_search_result(search_text) :
 	write_data_to_html(search_text)
 
 if __name__ == '__main__' :
-	sort_search_result('python')
+	sort_search_result('毛姆')
